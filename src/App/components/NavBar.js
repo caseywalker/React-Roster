@@ -22,7 +22,7 @@ const NavBar = () => {
         <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <Link className="nav-link" to="/add-students/">Add Players</Link>
+            <Link className="nav-link" to="/add-players/">Add Players</Link>
           </NavItem>
           <NavItem>
             <Link className="nav-link" to="/team">Team Roster</Link>

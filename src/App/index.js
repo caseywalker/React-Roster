@@ -16,7 +16,7 @@ function App() {
     <div className='App'>
       <Router>
         <NavBar />
-        <Routes players={players} />
+        <Routes players={players} setPlayers={setPlayers} />
       </Router>
     </div>
   );

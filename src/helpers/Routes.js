@@ -3,8 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Team from '../views/Team';
+import PlayerForm from '../App/components/PlayerForm';
 
-function Routes({ players }) {
+function Routes({ players, setPlayers }) {
   return (
     <div>
       <Switch>
@@ -13,13 +14,18 @@ function Routes({ players }) {
         exact path='/team'
         component={() => <Team players={players} />}
         />
+        <Route
+        exact path='/add-players'
+        component={() => <PlayerForm setPlayers={setPlayers} />}
+        />
       </Switch>
     </div>
   );
 }
 
 Routes.propTypes = {
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  setPlayers: PropTypes.func.isRequired
 };
 
 export default Routes;
