@@ -5,18 +5,18 @@ import Home from '../views/Home';
 import Team from '../views/Team';
 import PlayerForm from '../App/components/PlayerForm';
 
-function Routes({ players, setPlayers }) {
+function Routes({ players, setPlayers, user }) {
   return (
     <div>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route
         exact path='/team'
-        component={() => <Team players={players} setPlayers={setPlayers} />}
+        component={() => <Team players={players} setPlayers={setPlayers} user={user} />}
         />
         <Route
         exact path='/add-players'
-        component={() => <PlayerForm formTitle={'Add Player'} setPlayers={setPlayers} />}
+        component={() => <PlayerForm formTitle={'Add Player'} setPlayers={setPlayers} user={user} />}
         />
       </Switch>
     </div>
@@ -25,7 +25,8 @@ function Routes({ players, setPlayers }) {
 
 Routes.propTypes = {
   players: PropTypes.array.isRequired,
-  setPlayers: PropTypes.func.isRequired
+  setPlayers: PropTypes.func.isRequired,
+  user: PropTypes.any
 };
 
 export default Routes;

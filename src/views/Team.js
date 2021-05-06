@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerCard from '../App/components/PlayerCard';
 
-function Team({ players, setPlayers }) {
+function Team({ players, setPlayers, user }) {
   return (
     <div className="card-container">
       <br/>
@@ -15,6 +15,7 @@ function Team({ players, setPlayers }) {
           name={playerInfo.name}
           position={playerInfo.position}
           setPlayers={setPlayers}
+          user={user}
           />
         ))
       }
@@ -24,7 +25,8 @@ function Team({ players, setPlayers }) {
 
 Team.propTypes = {
   players: PropTypes.array.isRequired,
-  setPlayers: PropTypes.func.isRequired
+  setPlayers: PropTypes.func.isRequired,
+  user: PropTypes.any
 };
 
 export default Team;

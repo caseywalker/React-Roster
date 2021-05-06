@@ -9,13 +9,15 @@ function PlayerForm({
   firebaseKey,
   imageUrl,
   name,
-  position
+  position,
+  user
 }) {
   const [player, setPlayer] = useState({
     imageUrl: imageUrl || '',
     name: name || '',
     position: position || '',
-    firebaseKey: firebaseKey || null
+    firebaseKey: firebaseKey || null,
+    uid: user.uid
   });
 
   const handleInputChange = (e) => {
@@ -76,7 +78,8 @@ PlayerForm.propTypes = {
   firebaseKey: PropTypes.string,
   imageUrl: PropTypes.string,
   name: PropTypes.string,
-  position: PropTypes.string
+  position: PropTypes.string,
+  user: PropTypes.any
 };
 
 export default PlayerForm;
