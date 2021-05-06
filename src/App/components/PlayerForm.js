@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-import { addPlayer } from '../../helpers/data/playerData';
+import { addPlayer, updatePlayer } from '../../helpers/data/playerData';
 
-function PlayerForm({ setPlayers }) {
+function PlayerForm({
+  formTitle,
+  setPlayers,
+  firebaseKey,
+  imageUrl,
+  name,
+  position
+}) {
   const [player, setPlayer] = useState({
-    imageUrl: '',
-    name: '',
-    position: ''
+    imageUrl: imageUrl || '',
+    name: name || '',
+    position: position || '',
+    firebaseKey: firebaseKey || null
   });
 
   const handleInputChange = (e) => {
@@ -19,18 +27,23 @@ function PlayerForm({ setPlayers }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer(player).then((playersArray) => setPlayers(playersArray));
+    if (player.firebaseKey) {
+      updatePlayer(player).then((playersArray) => setPlayers(playersArray));
+    } else {
+      addPlayer(player).then((playersArray) => setPlayers(playersArray));
+    }
   };
   return (
     <div className="player-form">
       <form className='mt-3' id='add-player-form' autoComplete='off' onSubmit={handleSubmit}>
+        <h2>{formTitle}</h2>
         <label>Image URL:</label>
         <input
         className='ml-2'
         name='imageUrl'
         type='text'
         placeholder='URL'
-        value={player.imageUrl.value}
+        value={player.imageUrl}
         onChange={handleInputChange} />
         <br/>
         <label>Name:</label>
@@ -39,7 +52,7 @@ function PlayerForm({ setPlayers }) {
         name='name'
         type='text'
         placeholder='Player Name'
-        value={player.name.value}
+        value={player.name}
         onChange={handleInputChange} />
         <br/>
         <label>Position:</label>
@@ -48,17 +61,22 @@ function PlayerForm({ setPlayers }) {
         name='position'
         type='text'
         placeholder='Position'
-        value={player.position.value}
+        value={player.position}
         onChange={handleInputChange} />
         <br/>
-        <Button type='submit'>Submit</Button>
+        <Button color='info' type='submit'>Submit</Button>
       </form>
     </div>
   );
 }
 
 PlayerForm.propTypes = {
-  setPlayers: PropTypes.func.isRequired
+  setPlayers: PropTypes.func.isRequired,
+  formTitle: PropTypes.string.isRequired,
+  firebaseKey: PropTypes.string,
+  imageUrl: PropTypes.string,
+  name: PropTypes.string,
+  position: PropTypes.string
 };
 
 export default PlayerForm;

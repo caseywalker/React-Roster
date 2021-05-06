@@ -12,11 +12,11 @@ function Routes({ players, setPlayers }) {
         <Route exact path='/' component={Home}/>
         <Route
         exact path='/team'
-        component={() => <Team players={players} />}
+        component={() => <Team players={players} setPlayers={setPlayers} />}
         />
         <Route
         exact path='/add-players'
-        component={() => <PlayerForm setPlayers={setPlayers} />}
+        component={() => <PlayerForm formTitle={'Add Player'} setPlayers={setPlayers} />}
         />
       </Switch>
     </div>
