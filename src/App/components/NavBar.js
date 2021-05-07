@@ -17,19 +17,25 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const authenticated = () => (
+    <>
+      <NavItem>
+        <Link className="nav-link" to="/add-players">Add Players</Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/team">Team Roster</Link>
+      </NavItem>
+    </>
+  );
+
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Team Roster</NavbarBrand>
+        <NavbarBrand href="/"> { user ? `${user.fullName}'s Team Roster` : 'Team Roster' }</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
-          <NavItem>
-            <Link className="nav-link" to="/add-players/">Add Players</Link>
-          </NavItem>
-          <NavItem>
-            <Link className="nav-link" to="/team">Team Roster</Link>
-          </NavItem>
+          { user && authenticated() }
           {
             user !== null
             && <NavItem>

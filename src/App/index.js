@@ -29,12 +29,6 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     getPlayers(user.uid).then((playersArray) => setPlayers(playersArray));
-  //   }
-  // }, []);
-
   return (
     <div className='App'>
       <Router>
