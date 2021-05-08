@@ -5,6 +5,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import PlayerForm from './PlayerForm';
+import { deletePlayer } from '../../helpers/data/playerData';
 
 function PlayerCard({
   firebaseKey,
@@ -20,6 +21,9 @@ function PlayerCard({
     switch (type) {
       case 'edit':
         setEditing((prevState) => !prevState);
+        break;
+      case 'delete':
+        deletePlayer(firebaseKey, user.uid).then(setPlayers);
         break;
       default: console.warn('nothing selected');
     }
